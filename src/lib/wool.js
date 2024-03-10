@@ -2265,8 +2265,11 @@ class DirectServer {
             tags: node.param['tags'],
             statement: this.substituteVars(ctx, statement),
             multimedia: null,
-            replies: []
+            replies: [],
+            pendingActions: ctx.pendingActions,
         };
+
+        ctx.pendingActions = [];
 
         if (ctx.afreply) {
             ret.replies.push({

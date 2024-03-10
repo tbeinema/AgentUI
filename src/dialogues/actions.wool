@@ -10,7 +10,7 @@ This is a test of action statements. Testing image and video actions.
 
 This text comes after an image action.
 
-<<action type="video" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ">>
+<<action type="video" value="https://www.youtube.com/embed/dQw4w9WgXcQ?si=6-24phZphLeogCBP">>
 
 This text comes after a video action.
 
