@@ -13,7 +13,7 @@ defineProps({
 <template>
   <div class="w-100 py-1 text-center">
     <img
-        :src="'./src/assets/images/' + action.value"
+        :src="`./src/dialogues/images/${action.value}`"
         :alt="action.value">
   </div>
 </template>
