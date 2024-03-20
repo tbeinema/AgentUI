@@ -1,5 +1,3 @@
-import {WoolServer} from './types/WoolTypes';
-
 declare global {
   const _wool: {
     DirectServer: new () => WoolServer,
