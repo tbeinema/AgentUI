@@ -1,4 +1,4 @@
-import {App, computed, ComputedRef, inject, Ref, ref} from 'vue';
+import {App, computed, ComputedRef, inject, ref} from 'vue';
 import {WoolNode, WoolServer} from '../types/WoolTypes';
 
 const WoolDialogManager = Symbol('WoolDialogManager');
@@ -39,8 +39,10 @@ export class DialogueManager implements DialogueManagerInterface {
 
   private dialogueNodes = ref<WoolNode[]>([]);
 
-  public readonly isLoaded = ref(false);
-  public readonly errorMessage = ref(null);
+  private readonly _isLoaded = ref(false);
+  public readonly isLoaded = computed(() => this._isLoaded.value);
+  private readonly _errorMessage = ref(null);
+  public readonly errorMessage = computed(() => this._errorMessage.value);
 
   // Reference to the latest inserted step, so that we can display it
   public readonly currentStep = computed(() => this.dialogueNodes.value[this.dialogueNodes.value.length - 1]);
@@ -61,11 +63,11 @@ export class DialogueManager implements DialogueManagerInterface {
         this.startDialogue();
 
         // Mark as loaded
-        this.isLoaded.value = true;
+        this._isLoaded.value = true;
       })
       .catch(e => {
-        this.errorMessage.value = e.message;
-        this.isLoaded.value = true;
+        this._errorMessage.value = e.message;
+        this._isLoaded.value = true;
       });
   }
 
