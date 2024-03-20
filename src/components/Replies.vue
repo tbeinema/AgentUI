@@ -21,8 +21,8 @@ watch(step, () => inputValue.value = '');
 <template>
   <div class="d-flex flex-wrap justify-content-end">
     <form
-        v-for="reply in step.replies"
-        @submit.prevent="progressDialogue(reply.replyId, inputValue)">
+        v-for="(reply, replyIndex) in step.replies"
+        @submit.prevent="progressDialogue(reply.replyId, replyIndex, inputValue)">
       <TextualReply
           v-if="['TEXTINPUT', 'NUMERICINPUT'].includes(reply.replyType)"
           v-model="inputValue"

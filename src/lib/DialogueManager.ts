@@ -29,7 +29,7 @@ interface DialogueManagerInterface {
   readonly currentStep: ComputedRef<WoolNode>;
   readonly isEnded: ComputedRef<boolean>;
 
-  progressDialogue: (replyId: string, inputText?: string) => void;
+  progressDialogue: (replyId: string, replyIndex: number, inputText?: string) => void;
   restart: () => void;
 }
 
@@ -70,10 +70,10 @@ export class DialogueManager implements DialogueManagerInterface {
   }
 
   /** Method to submit a chosen reply, so that we can get the next step in the dialogue. */
-  public progressDialogue = (replyId: string, inputText?: string): void => {
+  public progressDialogue = (replyId: string, replyIndex: number, inputText?: string): void => {
     const parameters = {
       replyId,
-      replyIndex: 0,
+      replyIndex,
       textInput: inputText !== '' ? inputText : undefined,
     };
     this.server.parseActionsBeforeProgress(parameters);
